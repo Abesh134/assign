@@ -7,39 +7,31 @@ export default function Sidebar ({onSelect}){
     const [collapsed,setCollapsed] =useState(false);
     return(
         <div 
-        className="sidebar"
         style={{
-            width: collapsed? "70px" : "200px",
+            width: collapsed? "60px" : "200px",
+            height: "100vh",
+            background: "#5ad0e4ff",
+            padding: "10px",
+            transition: "0.3s",
         }}
         >
-            <img src="https://ui-avatars.com/api/?name=Sophia+Carter&background=e08b79&color=fff" alt="profile" />
-            <div style={{textAlign:"center",color:"white"}}>
-             {!collapsed && <h5>My Articles</h5>}    
-            </div>
-
-            <div style={{marginTop: "20px"}}>
-                <p style={{
-                    cursor: "pointer",color: "white"
-                }} onClick={()=> onSelect("articles")}>
-                    {collapsed ? "📝" : "My Articles"}
-
-                </p>
-
-            </div>
-
             <Button 
-            variant="outline-light"
+            variant="secondary"
             size="sm"
-            style={{
-                position: "absolute" ,
-                top : "10px",
-                right: "-130px",
-                borderRadius : "10px",
-            }} onClick={() => setCollapsed(!collapsed)}
+            onClick={() => setCollapsed(!collapsed)}
             >
-                {collapsed? "Expand Sidebar" : "Collapse Sidebar"}
+                {collapsed? ">>" : "<<"}
 
             </Button>
+            <div style={{
+                marginTop:"20px",
+                cursor: "pointer",
+            }}>
+                <p onClick={() => onSelect ("profile")}>👤 {collapsed ? "" : "Profile"}</p>
+                 <p onClick={() => onSelect ("articles")}>📝 {collapsed ? "" : "My Articles"}</p>
+
+
+            </div>
         </div>
     );
 }
