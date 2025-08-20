@@ -15,6 +15,10 @@ export default function Sidebar ({onSelect}){
             padding: "10px",
             transition: "0.3s",
             textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems:"center",
+            
         }}
         >
             <Button 
