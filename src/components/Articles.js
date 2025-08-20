@@ -3,23 +3,32 @@ import { Table, Badge, Pagination } from "react-bootstrap";
 
 const articlesData =[
      { title: "Do tour best", status: "Published" , edited: "1 days ago" },
-    { title: "Legends fall", status: "Published" , edited: "2 days ago" },
+    { title: "Legends fall", status: "Rejected" , edited: "2 days ago" },
     { title: "Digital Classrooms: Boon or Bane?", status: "Warning" , edited: "2 days ago" },
     { title: "How Reading Habits Shape Young Minds", status: "Warning" , edited: "2 days ago" },
     { title: "The Role of Teachers in a Tech-Driven World", status: "Published" , edited: "3 days ago" },
-    { title: "Why Failure Teaches Best", status: "Published" , edited: "3 days ago" },
+    { title: "Why Failure Teaches Best", status: "Review" , edited: "3 days ago" },
     { title: "no return", status: "Warning" , edited: "3 days ago" },
     { title: "Exams vs. Skills: What Should We Prioritize?", status: "Warning" , edited: "4 days ago" },
     { title: "The Language of Knowledge", status: "Published" , edited: "4 days ago" },
-    { title: "The Power of Curiosity", status: "Warning" , edited: "4 days ago" },
+    { title: "The Power of Curiosity", status: "Draft" , edited: "4 days ago" },
     { title: "Global Citizens Through Education", status: "Warning" , edited: "5 days ago" },
     { title: "The Future of Online Learning", status: "Published" , edited: "5 days ago" },
     { title: "Unleashing Student Potential", status: "Warning" , edited: "6 days ago" },
     { title: "Why Emotional Intelligence Should Be Taught in Schools", status: "Warning" , edited: "6 days ago" },
-    { title: "The Future of Learning: Beyond Classrooms", status: "Published" , edited: "6 days ago" },
+    { title: "The Future of Learning: Beyond Classrooms", status: "Rejected" , edited: "6 days ago" },
     
 ]
 
+const getBadgeVariant = (status) => {
+  switch (status) {
+    case "Published": return "success";
+    case "Draft":     return "warning";
+    case "Review":    return "primary";
+    case "Rejected":  return "danger";
+    default:          return "secondary";
+  }
+};
 export default function Articles(){
     const [page, setPage] = useState(1);
     const articlesPerPage =4 ;
@@ -41,17 +50,12 @@ export default function Articles(){
                         displayedArticles.map((article,idx) => (
                             <tr key={idx}>
                                 <td>{article.title}</td>
-                                <td>{article.status==="Published" ? (
-                                    <Badge pill bg="success" >
-                                        Published
-                                    </Badge>
-                                ) :(
-                                    <Badge pill bg= "warning">
-                                        Draft
-                                    </Badge>
-                                )
-                            }</td>
-                                <td>{article.title}</td>
+                               <td>
+                                <Badge pill bg={getBadgeVariant(article.status)}>
+                                    {article.status}
+                                </Badge>
+                               </td>
+                                <td>{article.edited}</td>
                             </tr>
                         ))
                     }
