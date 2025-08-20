@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React, { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Profile from "./components/Profile";
@@ -9,6 +8,7 @@ function App() {
       <Sidebar onSelect={setSelected}/>
       <div style={{flex: 1, padding:"20px"}}>
         {selected==="profile" && <Profile/>}
+
 
       </div>
     </div>
